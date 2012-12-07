@@ -1,1 +1,5 @@
 services:
+  rodgermd.type.image_file:
+    class: Rodgermd\SfToolsBundle\Type\ImageFileType
+    tags:
+        - { name: form.type, alias: image_file }

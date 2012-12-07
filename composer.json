@@ -11,7 +11,9 @@
     }
   ],
   "require":{
-    "symfony/framework-bundle":"2.1.*"
+    "symfony/framework-bundle":"2.1.*",
+    "vich/uploader-bundle": "dev-master",
+    "liip/imagine-bundle": "dev-master"
   },
   "autoload":{
     "psr-0":{
