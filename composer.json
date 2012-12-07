@@ -1,0 +1,22 @@
+{
+  "name":"rodgermd/sftools-bundle",
+  "description":"Usefull tools, widgets etc",
+  "homepage":"https://github.com/rodgermd/RodgerSfTools",
+  "type":"symfony-bundle",
+  "license":"MIT",
+  "authors":[
+    {
+      "name":"Alexander Murashov",
+      "email":"rodger@ladela.com"
+    }
+  ],
+  "require":{
+    "symfony/framework-bundle":"2.1.*",
+  },
+  "autoload":{
+    "psr-0":{
+      "rodgermd\\SfToolsBundle":""
+    }
+  },
+  "target-dir":"rodgermd/SfToolsBundle"
+}
