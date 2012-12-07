@@ -32,6 +32,18 @@ class ImagesExtension extends Twig_Extension
     );
   }
 
+  public function getFunctions()
+  {
+    return array(
+      'call_entity_method' => new Twig_Function_Method($this, 'call_entity_method'),
+    );
+  }
+
+  public function call_entity_method($entity, $method)
+  {
+    return call_user_func(array($entity, $method));
+  }
+
   /**
    * Renders uploaded image
    * @param $object

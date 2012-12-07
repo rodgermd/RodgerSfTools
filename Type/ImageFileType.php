@@ -10,11 +10,10 @@
 
   class ImageFileType extends FileType
   {
-
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
       $resolver->setDefaults(array(
-        'method' => 'getFilename', 'filter' => 'small', 'use_delete' => false
+        'method' => 'getFilename', 'filter' => 'small', 'use_delete' => false, 'data_class' => 'Symfony\Component\HttpFoundation\File\File'
       ));
     }
 

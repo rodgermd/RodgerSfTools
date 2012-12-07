@@ -6,7 +6,7 @@
     {% if call_entity_method(object, method) %}
       <div class="gallery-thumb">
         {% if filter %}
-          <img src="{{ vich_uploader_asset(object, form.get('name')) | apply_filter(filter) }}"/>
+          <img src="{{ vich_uploader_asset(object, form.get('name')) | imagine_filter(filter) }}"/>
         {% else %}
           <img src="{{ vich_uploader_asset(object, form.get('name')) }}"/>
         {% endif %}

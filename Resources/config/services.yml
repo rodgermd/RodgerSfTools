@@ -3,3 +3,7 @@ services:
     class: Rodgermd\SfToolsBundle\Type\ImageFileType
     tags:
         - { name: form.type, alias: image_file }
+  rodgermd.twig.images_extension:
+    class: Rodgermd\SfToolsBundle\Twig\ImagesExtension
+    tags: [ { name: twig.extension } ]
+    arguments: [@service_container]
