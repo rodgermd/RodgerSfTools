@@ -15,8 +15,8 @@
   },
   "autoload":{
     "psr-0":{
-      "rodgermd\\SfToolsBundle":""
+      "Rodgermd\\SfToolsBundle":""
     }
   },
-  "target-dir":"rodgermd/SfToolsBundle"
+  "target-dir":"/"
 }
