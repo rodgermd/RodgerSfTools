@@ -70,7 +70,7 @@ class ImagesExtension extends Twig_Extension
     $params['src'] = $src;
     $result = array();
     foreach($params as $key => $value) $result[] = strtr('%key%="%value%"', array('%key%' => $key, '%value%' => $value));
-    return strtr("<img %params%/>", array('%params%' => $result));
+    return strtr("<img %params%/>", array('%params%' => implode(" ", $result)));
   }
 
   public function getName()
