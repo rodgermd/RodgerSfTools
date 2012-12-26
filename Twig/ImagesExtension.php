@@ -68,7 +68,7 @@ class ImagesExtension extends Twig_Extension
     $default_params = array('alt' => '');
     $params = array_merge($default_params, $params);
     $params['src'] = $src;
-    $result = [];
+    $result = array();
     foreach($params as $key => $value) $result[] = strtr('%key%="%value%"', array('%key%' => $key, '%value%' => $value));
     return strtr("<img %params%/>", array('%params%' => $result));
   }
