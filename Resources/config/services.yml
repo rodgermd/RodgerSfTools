@@ -7,3 +7,6 @@ services:
     class: Rodgermd\SfToolsBundle\Twig\ImagesExtension
     tags: [ { name: twig.extension } ]
     arguments: [@service_container]
+
+  rodgermd.vichuploader.namer_md5:
+    class: Rodgermd\SfToolsBundle\Naming\MD5Namer
