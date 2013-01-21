@@ -3,8 +3,8 @@
 namespace Rodgermd\SfToolsBundle\Twig;
 
 use \Twig_Extension;
-use \Twig_Filter_Method;
-use \Twig_Function_Method;
+use \Twig_SimpleFilter;
+use \Twig_SimpleFunction;
 use Symfony\Component\DependencyInjection\Container;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use Liip\ImagineBundle\Templating\Helper\ImagineHelper;
@@ -28,14 +28,14 @@ class ImagesExtension extends Twig_Extension
   public function getFilters()
   {
     return array(
-      'uploaded_image' => new Twig_Filter_Method($this, 'uploaded_image', array('is_safe' => array('html'))),
+      new Twig_SimpleFilter('uploaded_image', array($this, 'uploaded_image'), array('is_safe' => array('html'))),
     );
   }
 
   public function getFunctions()
   {
     return array(
-      'call_entity_method' => new Twig_Function_Method($this, 'call_entity_method'),
+      new Twig_SimpleFunction('call_entity_method', array($this, 'call_entity_method')),
     );
   }
 
@@ -75,6 +75,6 @@ class ImagesExtension extends Twig_Extension
 
   public function getName()
   {
-    return 'rodgermd.images_extemsion';
+    return 'rodgermd.images_extension';
   }
 }
