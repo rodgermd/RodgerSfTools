@@ -11,7 +11,7 @@
     }
   ],
   "require":{
-    "symfony/symfony":"dev-master",
+    "symfony/symfony":"*",
     "vich/uploader-bundle": "dev-master",
     "liip/imagine-bundle": "dev-master"
   },
