@@ -28,9 +28,9 @@
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
       $view->vars = array_replace($view->vars, array(
-        'method'     => $form->getAttribute('method'),
-        'filter'     => $form->getAttribute('filter'),
-        'use_delete' => $form->getAttribute('use_delete'),
+        'method'     => $form->getConfig()->getAttribute('method'),
+        'filter'     => $form->getConfig()->getAttribute('filter'),
+        'use_delete' => $form->getConfig()->getAttribute('use_delete'),
       ));
     }
 

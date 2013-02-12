@@ -1,6 +1,6 @@
 {% block image_file_widget %}
-  {% set method = form.get('method') %}
-  {% set filter = form.get('filter') %}
+  {% set method = form.vars.method %}
+  {% set filter = form.vars.filter %}
   {% set object = form.parent.vars.value %}
   {% spaceless %}
     {% if call_entity_method(object, method) %}
