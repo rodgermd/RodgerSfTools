@@ -21,7 +21,9 @@ class MD5Namer implements NamerInterface
     $refProp->setAccessible(true);
 
     $file = $refProp->getValue($obj);
+    $extension = $file->guessExtension();
+    if ($extension == 'jpeg') $extension = 'jpg';
 
-    return sprintf('%s.%s', md5(uniqid()), $file->guessExtension());
+    return sprintf('%s.%s', md5(uniqid()), $extension);
   }
 }
