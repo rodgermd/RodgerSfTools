@@ -3,6 +3,11 @@ services:
     class: Rodgermd\SfToolsBundle\Type\ImageType
     tags:
         - { name: form.type, alias: image }
+
+  rodgermd.type.rich_text:
+    class: Rodgermd\SfToolsBundle\Type\RichTextType
+    tags:
+      - { name: form.type, alias: rich_text }
   rodgermd.twig.images_extension:
     class: Rodgermd\SfToolsBundle\Twig\ImagesExtension
     tags: [ { name: twig.extension } ]
