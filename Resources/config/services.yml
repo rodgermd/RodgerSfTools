@@ -1,8 +1,8 @@
 services:
   rodgermd.type.image_file:
-    class: Rodgermd\SfToolsBundle\Type\ImageFileType
+    class: Rodgermd\SfToolsBundle\Type\ImageType
     tags:
-        - { name: form.type, alias: image_file }
+        - { name: form.type, alias: image }
   rodgermd.twig.images_extension:
     class: Rodgermd\SfToolsBundle\Twig\ImagesExtension
     tags: [ { name: twig.extension } ]

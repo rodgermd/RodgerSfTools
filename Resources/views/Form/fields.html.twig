@@ -1,23 +1,9 @@
-{% block image_file_widget %}
-  {% set method = form.vars.method %}
-  {% set filter = form.vars.filter %}
-  {% set object = form.parent.vars.value %}
-  {% spaceless %}
-    {% if call_entity_method(object, method) %}
-      <div class="gallery-thumb">
-        {% if filter %}
-          <img src="{{ vich_uploader_asset(object, form.get('name')) | imagine_filter(filter) }}"/>
-        {% else %}
-          <img src="{{ vich_uploader_asset(object, form.get('name')) }}"/>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    {% set type = type|default('text') %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% set delete_name = form.get('name') ~ '_delete' %}
-    {% if call_entity_method(object, method) and form.parent[delete_name] is defined %}
-      <div class="gallery-thumb-delete">{{ form_widget(form.parent[delete_name]) }} {{ form_label(form.parent[delete_name], null, {'attr' : {'style' : 'float: none'}}) }}</div>
-    {% endif %}
-  {% endspaceless %}
-{% endblock image_file_widget %}
+{% block image_widget %}
+  {% if form.parent.vars.data | is_uploaded(form.name) %}
+    <div class="thumbnail-holder">
+      <img class="thumbnail"
+           src="{{ vich_uploader_asset(form.parent.vars.data, form.name) | imagine_filter(form.vars.filter) }}" alt=""/>
+    </div>
+  {% endif %}
+  {{ block('form_widget_simple') }}
+{% endblock image_widget %}
