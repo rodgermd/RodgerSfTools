@@ -1,8 +1,8 @@
 {% block image_widget %}
-  {% if form.parent.vars.data | is_uploaded(form.name) %}
+  {% if form.parent.vars.data | is_uploaded(form.vars.name) %}
     <div class="thumbnail-holder">
       <img class="thumbnail"
-           src="{{ vich_uploader_asset(form.parent.vars.data, form.name) | imagine_filter(form.vars.filter) }}" alt=""/>
+           src="{{ vich_uploader_asset(form.parent.vars.data, form.vars.name) | imagine_filter(form.vars.filter) }}" alt=""/>
     </div>
   {% endif %}
   {{ block('form_widget_simple') }}
