@@ -70,6 +70,7 @@ class ImagesExtension extends Twig_Extension
    */
   public function uploaded_image($object, $filter, $property = 'file')
   {
+    if (!$this->is_uploaded($object, $property)) return false;
     $original_filename = $this->uploader_helper->asset($object, $property);
     return $this->image_tag($this->thumbnails_helper->filter($original_filename, $filter));
   }

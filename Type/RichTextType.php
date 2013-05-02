@@ -29,6 +29,6 @@ class RichTextType extends TextareaType
   public function buildView(FormView $view, FormInterface $form, array $options)
   {
     parent::buildView($view, $form, $options);
-    $view->vars['attr']['class'] = trim(@$view->vars['attr']['class'] . ' rich-field');
+    $view->vars['attr']['class'] = trim((@$view->vars['attr']['class']) . ' rich-field');
   }
 }
