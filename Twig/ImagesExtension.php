@@ -30,20 +30,9 @@ class ImagesExtension extends Twig_Extension
   {
     return array(
       new Twig_SimpleFilter('uploaded_image', array($this, 'uploaded_image'), array('is_safe' => array('html'))),
+      new Twig_SimpleFilter('uploaded_image_source', array($this, 'uploaded_image_source'), array('is_safe' => array('html'))),
       new Twig_SimpleFilter('is_uploaded', array($this, 'is_uploaded')),
     );
-  }
-
-  public function getFunctions()
-  {
-    return array(
-      new Twig_SimpleFunction('call_entity_method', array($this, 'call_entity_method')),
-    );
-  }
-
-  public function call_entity_method($entity, $method)
-  {
-    return call_user_func(array($entity, $method));
   }
 
   /**
@@ -71,8 +60,21 @@ class ImagesExtension extends Twig_Extension
   public function uploaded_image($object, $filter, $property = 'file')
   {
     if (!$this->is_uploaded($object, $property)) return false;
+    return $this->image_tag($this->uploaded_image_source($object, $filter, $property));
+  }
+
+  /**
+   * Gets uploaded image source uri
+   * @param $object
+   * @param $filter
+   * @param string $property
+   * @return bool|string
+   */
+  public function uploaded_image_source($object, $filter, $property = 'file')
+  {
+    if (!$this->is_uploaded($object, $property)) return false;
     $original_filename = $this->uploader_helper->asset($object, $property);
-    return $this->image_tag($this->thumbnails_helper->filter($original_filename, $filter));
+    return $this->thumbnails_helper->filter($original_filename, $filter);
   }
 
   /**
