@@ -1,10 +1,19 @@
 {% block image_widget %}
-  {% if form.parent.vars.data | is_uploaded(form.vars.name) %}
+  {% set property = form.vars.object_property | default(form.vars.name) %}
+  {% if form.vars.object | is_uploaded(property) %}
     <div class="thumbnail-holder">
-      <img class="thumbnail"
-           src="{{ vich_uploader_asset(form.parent.vars.data, form.vars.name) | imagine_filter(form.vars.filter) }}" alt=""/>
+      <img class="thumbnail" src="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(form.vars.filter) }}" alt=""/>
     </div>
   {% endif %}
   {{ block('form_widget_simple') }}
 {% endblock image_widget %}
+
+{% block image_delete_widget %}
+  <div class="image-delete-widget">
+  {{ form_row(form.file) }}
+  {% if form.parent.vars.data | is_uploaded(form.vars.name) %}
+    {{ form_row(form.delete) }}
+  {% endif %}
+  </div>
+{% endblock image_delete_widget %}
 

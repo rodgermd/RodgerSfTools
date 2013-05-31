@@ -43,6 +43,7 @@ class ImagesExtension extends Twig_Extension
    */
   public function is_uploaded($object, $property = 'file')
   {
+    if ($object === null) return false;
     try {
       return $this->uploader_helper->asset($object, $property);
     } catch (InvalidArgumentException $e) {
