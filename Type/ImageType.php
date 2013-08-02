@@ -22,15 +22,17 @@ class ImageType Extends FileType
     parent::setDefaultOptions($resolver);
     $resolver->replaceDefaults(array(
       'filter'          => 'admin_thumbnail',
-      'object_property' => null
+      'object_property' => null,
+      'preview'         => null
     ));
   }
 
   public function buildView(FormView $view, FormInterface $form, array $options)
   {
     parent::buildView($view, $form, $options);
-    $view->vars['filter'] = $options['filter'];
-    $view->vars['object'] = $form->getParent()->getData();
+    $view->vars['filter']  = $options['filter'];
+    $view->vars['object']  = $form->getParent()->getData();
+    $view->vars['preview'] = $options['preview'];
   }
 
   public function getName()

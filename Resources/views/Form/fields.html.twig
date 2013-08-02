@@ -1,8 +1,14 @@
 {% block image_widget %}
   {% set property = form.vars.object_property | default(form.vars.name) %}
+  {% set preview = form.vars.preview %}
   {% if form.vars.object | is_uploaded(property) %}
     <div class="thumbnail-holder">
-      <img class="thumbnail" src="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(form.vars.filter) }}" alt=""/>
+      {% if preview %}
+      <a href="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(preview) }}" class="colorbox">
+      {% endif %}
+        <img class="thumbnail"
+             src="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(form.vars.filter) }}" alt=""/>
+      {% if preview %}</a>{% endif %}
     </div>
   {% endif %}
   {{ block('form_widget_simple') }}
@@ -10,10 +16,10 @@
 
 {% block image_delete_widget %}
   <div class="image-delete-widget">
-  {{ form_row(form.file) }}
-  {% if form.parent.vars.data | is_uploaded(form.vars.name) %}
-    {{ form_row(form.delete) }}
-  {% endif %}
+    {{ form_row(form.file) }}
+    {% if form.parent.vars.data | is_uploaded(form.vars.name) %}
+      {{ form_row(form.delete) }}
+    {% endif %}
   </div>
 {% endblock image_delete_widget %}
 
