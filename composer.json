@@ -12,8 +12,8 @@
   ],
   "require":{
     "symfony/symfony":"*",
-    "vich/uploader-bundle": "dev-master",
-    "liip/imagine-bundle": "dev-master"
+    "vich/uploader-bundle": "*",
+    "liip/imagine-bundle": "*"
   },
   "autoload":{
     "psr-0":{
