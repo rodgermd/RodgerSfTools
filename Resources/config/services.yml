@@ -18,5 +18,9 @@ services:
     tags: [ { name: twig.extension } ]
     arguments: [@service_container]
 
+  rodgermd.twig.youtube_extension:
+      class: Rodgermd\SfToolsBundle\Twig\YoutubeExtension
+      tags: [ { name: twig.extension } ]
+
   rodgermd.vichuploader.namer_md5:
     class: Rodgermd\SfToolsBundle\Naming\MD5Namer
