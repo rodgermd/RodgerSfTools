@@ -21,11 +21,11 @@ class YoutubeExtension extends Twig_Extension {
     );
   }
 
-  public function youtube_image_preview($url) {
+  public function youtube_image_preview($url, $thumbnail = 0) {
     preg_match("/\/watch\?v=(?P<code>[\w\d]+)/", $url, $matches);
 
     if (@$matches['code']) {
-      return 'http://img.youtube.com/vi/' . $matches['code'] . '/1.jpg';
+      return 'http://img.youtube.com/vi/' . $matches['code'] . '/' . $thumbnail . '.jpg';
     }
     return false;
   }
