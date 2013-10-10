@@ -58,10 +58,10 @@ class ImagesExtension extends Twig_Extension
    * @param string $property
    * @return string
    */
-  public function uploaded_image($object, $filter, $property = 'file')
+  public function uploaded_image($object, $filter, $property = 'file', $attributes = array())
   {
     if (!$this->is_uploaded($object, $property)) return false;
-    return $this->image_tag($this->uploaded_image_source($object, $filter, $property));
+    return $this->image_tag($this->uploaded_image_source($object, $filter, $property), $attributes);
   }
 
   /**
