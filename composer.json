@@ -15,8 +15,8 @@
   },
   "autoload":{
     "psr-0":{
-      "Rodgermd\\ContestNominationsBundle":""
+      "Rodgermd\\SfToolsBundle":""
     }
   },
-  "target-dir":"Rodgermd/ContestNominationsBundle"
+  "target-dir":"Rodgermd/SfToolsBundle"
 }
