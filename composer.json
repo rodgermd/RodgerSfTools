@@ -11,14 +11,12 @@
     }
   ],
   "require":{
-    "symfony/symfony":"*",
-    "vich/uploader-bundle": "*",
-    "liip/imagine-bundle": "*"
+    "rodgermd/sftools-bundle": "dev-master"
   },
   "autoload":{
     "psr-0":{
-      "Rodgermd\\SfToolsBundle":""
+      "Rodgermd\\ContestNominationsBundle":""
     }
   },
-  "target-dir":"Rodgermd/SfToolsBundle"
+  "target-dir":"Rodgermd/ContestNominationsBundle"
 }

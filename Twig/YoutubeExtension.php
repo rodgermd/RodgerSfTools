@@ -12,22 +12,56 @@ namespace Rodgermd\SfToolsBundle\Twig;
 use \Twig_Extension;
 use \Twig_SimpleFilter;
 
-class YoutubeExtension extends Twig_Extension {
+class YoutubeExtension extends Twig_Extension
+{
 
   public function getFilters()
   {
     return array(
-      new Twig_SimpleFilter('youtube_preview', array($this, 'youtube_image_preview'), array('is_safe' => array('html'))),
+      new Twig_SimpleFilter('youtube_preview', array( $this, 'youtube_image_preview' ), array( 'is_safe' => array( 'html' ) )),
+      new Twig_SimpleFilter('youtube_embed', array( $this, 'youtube_embed' ), array( 'is_safe' => array( 'html' ) )),
     );
   }
 
-  public function youtube_image_preview($url, $thumbnail = 0) {
+  /**
+   * Renders youtube video preview image
+   * @param $url
+   * @param int $thumbnail
+   * @return bool|string
+   */
+  public function youtube_image_preview($url, $thumbnail = 0)
+  {
+    $code = $this->youtube_id($url);
+
+    return $code ? 'http://img.youtube.com/vi/' . $code . '/' . $thumbnail . '.jpg' : false;
+  }
+
+  /**
+   * Renders youtube embeded video
+   * @param $url
+   * @return bool|string
+   */
+  public function youtube_embed($url)
+  {
+    $string = <<< HTML
+    <iframe align="right" frameborder="0" scrolling="no" src="http://www.youtube.com/embed/%code%"></iframe>
+HTML;
+
+    $code = $this->youtube_id($url);
+
+    return $code ? strtr($string, array( '%code%' => $code )) : false;
+  }
+
+  /**
+   * Parses youtube identificator from url
+   * @param $url
+   * @return bool
+   */
+  protected function youtube_id($url)
+  {
     preg_match("/\/watch\?v=(?P<code>[\w\d]+)/", $url, $matches);
 
-    if (@$matches['code']) {
-      return 'http://img.youtube.com/vi/' . $matches['code'] . '/' . $thumbnail . '.jpg';
-    }
-    return false;
+    return @$matches['code'] ? : false;
   }
 
   /**
