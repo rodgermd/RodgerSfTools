@@ -10,6 +10,9 @@
       "email":"rodger@ladela.com"
     }
   ],
+  "require": {
+    "vich/uploader-bundle": "@stable"
+  }
   "autoload":{
     "psr-0":{
       "Rodgermd\\SfToolsBundle":""
