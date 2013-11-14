@@ -11,7 +11,8 @@
     }
   ],
   "require": {
-    "vich/uploader-bundle": "@stable"
+    "vich/uploader-bundle": "@stable",
+    "liip/imagine-bundle": "@stable"
   }
   "autoload":{
     "psr-0":{
