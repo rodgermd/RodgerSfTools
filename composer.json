@@ -10,9 +10,6 @@
       "email":"rodger@ladela.com"
     }
   ],
-  "require":{
-    "rodgermd/sftools-bundle": "dev-master"
-  },
   "autoload":{
     "psr-0":{
       "Rodgermd\\SfToolsBundle":""
