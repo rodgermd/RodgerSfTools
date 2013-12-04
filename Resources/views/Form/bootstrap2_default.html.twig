@@ -9,3 +9,23 @@
     </div>
   {% endspaceless %}
 {% endblock form_row %}
+
+{% block form_label %}
+  {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+  {{ parent() }}
+{% endblock form_label %}
+
+{% block form_errors %}
+  {% spaceless %}
+    {% if errors|length > 0 %}
+      <ul class="errors">
+        {% for error in errors %}
+          <li class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            {{ error.message | trans }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endspaceless %}
+{% endblock form_errors %}
