@@ -1,0 +1,24 @@
+{% extends "RodgermdSfToolsBundle:Form:bootstrap2_default.html.twig" %}
+
+{% block form_row %}
+  {% spaceless %}
+    <div class="form-group">
+      {{ form_label(form) }}
+      <div class="col-sm-8">
+        {{ form_errors(form) }}
+        {{ form_widget(form, { attr: { class: 'form-control' } }) }}
+      </div>
+    </div>
+  {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_label %}
+  {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-sm-4')|trim}) %}
+  {{ parent() }}
+{% endblock form_label %}
+
+{% block form_start %}
+  {% set attr = attr | merge({class : (attr.class | default('')) ~ ' form-horizontal'}) %}
+  {{ parent() }}
+{% endblock form_start %}
+
