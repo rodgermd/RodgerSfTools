@@ -18,41 +18,84 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class ImageDeleteType
+ * Image with delete option form type
+ *
+ * @package Rodgermd\SfToolsBundle\Type
+ */
 class ImageDeleteType extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->addViewTransformer(new ImageDeleteDataTransformer());
-    $builder
-      ->add('delete', 'checkbox', array('required' => true))
-      ->add('file', 'image', array(
-        'required'   => @$options['required'],
-        'filter'     => @$options['filter'],
-        'data_class' => 'Symfony\Component\HttpFoundation\File\File'));
-  }
+    /**
+     * Defines form
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->addViewTransformer(new ImageDeleteDataTransformer());
+        $builder
+          ->add('delete', 'checkbox', array('required' => true))
+          ->add(
+              'file',
+              'image',
+              array(
+                  'required'   => @$options['required'],
+                  'filter'     => @$options['filter'],
+                  'data_class' => 'Symfony\Component\HttpFoundation\File\File'
+              )
+          );
+    }
 
-  public function buildView(FormView $view, FormInterface $form, array $options)
-  {
-    $view->vars['object']                   = $view->parent->vars['data'];
-  }
+    /**
+     * Builds view
+     *
+     * @param FormView      $view
+     * @param FormInterface $form
+     * @param array         $options
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['object'] = $view->parent->vars['data'];
+    }
 
-  public function finishView(FormView $view, FormInterface $form, array $options)
-  {
-    $view->children['file']->vars['object'] = $form->getParent()->getData();
-    $view->children['file']->vars['object_property'] = $view->vars['name'];
+    /**
+     * Finish view
+     *
+     * @param FormView      $view
+     * @param FormInterface $form
+     * @param array         $options
+     */
+    public function finishView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->children['file']->vars['object']          = $form->getParent()->getData();
+        $view->children['file']->vars['object_property'] = $view->vars['name'];
 
-  }
+    }
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->replaceDefaults(array(
-      'filter' => 'admin_thumbnail',
-    ));
-  }
+    /**
+     * Sets default options
+     *
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->replaceDefaults(
+            array(
+                'filter'   => 'admin_thumbnail',
+                'required' => false
+            )
+        );
+    }
 
-
-  public function getName()
-  {
-    return 'image_delete';
-  }
+    /**
+     * Form name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return 'image_delete';
+    }
 }
