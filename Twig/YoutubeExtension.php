@@ -15,7 +15,7 @@ use \Twig_SimpleFilter;
 class YoutubeExtension extends Twig_Extension
 {
     const VIDEO_URL   = 'http://www.youtube.com/embed/%code%';
-    const IFRAME_CODE = '<iframe align="right" frameborder="0" scrolling="no" src="%url%"></iframe>';
+    const IFRAME_CODE = '<iframe frameborder="0" scrolling="no" src="%url%"></iframe>';
 
     public function getFilters()
     {
