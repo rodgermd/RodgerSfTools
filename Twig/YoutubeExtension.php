@@ -81,7 +81,7 @@ class YoutubeExtension extends Twig_Extension
      */
     protected function youtube_id($url)
     {
-        preg_match("/\/watch\?v=(?P<code>[\w\d]+)/", $url, $matches);
+        preg_match("/\/watch\?v=(?P<code>[\w\d\-]+)/", $url, $matches);
 
         return @$matches['code'] ? : false;
     }
