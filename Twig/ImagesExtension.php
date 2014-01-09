@@ -17,6 +17,7 @@ class ImagesExtension extends Twig_Extension
 
     /**
      * Object constructor
+     *
      * @param Container $container
      */
     public function __construct(Container $container)
@@ -32,14 +33,15 @@ class ImagesExtension extends Twig_Extension
 
     /**
      * Defines filters
+     *
      * @return array
      */
     public function getFilters()
     {
         return array(
-            new Twig_SimpleFilter('uploaded_image', array($this, 'uploaded_image'), array('is_safe' => array('html'))),
-            new Twig_SimpleFilter('uploaded_image_source', array($this, 'uploaded_image_source'), array('is_safe' => array('html'))),
-            new Twig_SimpleFilter('is_uploaded', array($this, 'is_uploaded')),
+          new Twig_SimpleFilter('uploaded_image', array($this, 'uploaded_image'), array('is_safe' => array('html'))),
+          new Twig_SimpleFilter('uploaded_image_source', array($this, 'uploaded_image_source'), array('is_safe' => array('html'))),
+          new Twig_SimpleFilter('is_uploaded', array($this, 'is_uploaded')),
         );
     }
 
@@ -79,7 +81,14 @@ class ImagesExtension extends Twig_Extension
             return false;
         }
 
-        return $this->image_tag($this->uploaded_image_source($object, $filter, $property), $attributes);
+        $absolute = false;
+        if (array_key_exists('absolute', $attributes)) {
+            $absolute = (bool)$attributes['absolute'];
+            unset($attributes['absolute']);
+        }
+
+
+        return $this->image_tag($this->uploaded_image_source($object, $filter, $property, $absolute), $attributes);
     }
 
     /**
@@ -88,17 +97,18 @@ class ImagesExtension extends Twig_Extension
      * @param mixed  $object
      * @param string $filter
      * @param string $property
+     * @param bool   $absolute
      *
      * @return bool|string
      */
-    public function uploaded_image_source($object, $filter, $property = 'file')
+    public function uploaded_image_source($object, $filter, $property = 'file', $absolute = false)
     {
         if (!$this->is_uploaded($object, $property)) {
             return false;
         }
         $original_filename = $this->uploader_helper->asset($object, $property);
 
-        return $this->thumbnails_helper->filter($original_filename, $filter);
+        return $this->thumbnails_helper->filter($original_filename, $filter, $absolute);
     }
 
     /**
