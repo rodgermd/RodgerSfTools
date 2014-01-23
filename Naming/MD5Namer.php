@@ -1,6 +1,7 @@
 <?php
 
 namespace Rodgermd\SfToolsBundle\Naming;
+
 use Vich\UploaderBundle\Naming\NamerInterface;
 
 /**
@@ -10,20 +11,25 @@ use Vich\UploaderBundle\Naming\NamerInterface;
  */
 class MD5Namer implements NamerInterface
 {
-  /**
-   * {@inheritDoc}
-   */
-  public function name($obj, $field)
-  {
-    $refObj = new \ReflectionObject($obj);
+    /**
+     * {@inheritDoc}
+     */
+    public function name($obj, $field)
+    {
+        $refObj = new \ReflectionObject($obj);
 
-    $refProp = $refObj->getProperty($field);
-    $refProp->setAccessible(true);
+        $refProp = $refObj->getProperty($field);
+        $refProp->setAccessible(true);
 
-    $file = $refProp->getValue($obj);
-    $extension = $file->guessExtension();
-    if ($extension == 'jpeg') $extension = 'jpg';
+        $file = $refProp->getValue($obj);
+        if (is_null($file)) {
+            return false;
+        }
+        $extension = $file->guessExtension();
+        if ($extension == 'jpeg') {
+            $extension = 'jpg';
+        }
 
-    return sprintf('%s.%s', md5(uniqid()), $extension);
-  }
+        return sprintf('%s.%s', md5(uniqid()), $extension);
+    }
 }
