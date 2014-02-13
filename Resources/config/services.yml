@@ -16,7 +16,11 @@ services:
   rodgermd.twig.images_extension:
     class: Rodgermd\SfToolsBundle\Twig\ImagesExtension
     tags: [ { name: twig.extension } ]
-    arguments: [@service_container]
+    arguments: [@rodgermd.manager.images]
+
+  rodgermd.manager.images:
+    class: Rodgermd\SfToolsBundle\Manager\ImagesManager
+    arguments: [@vich_uploader.templating.helper.uploader_helper, @liip_imagine.templating.helper]
 
   rodgermd.twig.youtube_extension:
       class: Rodgermd\SfToolsBundle\Twig\YoutubeExtension
@@ -24,3 +28,5 @@ services:
 
   rodgermd.vichuploader.namer_md5:
     class: Rodgermd\SfToolsBundle\Naming\MD5Namer
+
+
