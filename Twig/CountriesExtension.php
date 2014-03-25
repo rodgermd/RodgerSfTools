@@ -48,11 +48,14 @@ class CountriesExtension extends Twig_Extension
      */
     public function country($code, $culture = null)
     {
+        if (!$code) {
+            return null;
+        }
         if (!$this->countries) {
             $this->countries = Intl::getRegionBundle()->getCountryNames($culture);
         }
 
-        return $this->countries[$code];
+        return $this->countries[strtoupper($code)];
     }
 
     /**
