@@ -5,8 +5,6 @@ namespace Rodgermd\SfToolsBundle\Twig;
 use Rodgermd\SfToolsBundle\Manager\ImagesManager;
 use \Twig_Extension;
 use \Twig_SimpleFilter;
-use Symfony\Component\DependencyInjection\Container;
-use \InvalidArgumentException;
 
 class ImagesExtension extends Twig_Extension
 {

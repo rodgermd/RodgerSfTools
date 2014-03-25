@@ -26,6 +26,10 @@ services:
       class: Rodgermd\SfToolsBundle\Twig\YoutubeExtension
       tags: [ { name: twig.extension } ]
 
+  rodgermd.twig.countries_extension:
+        class: Rodgermd\SfToolsBundle\Twig\CountriesExtension
+        tags: [ { name: twig.extension } ]
+
   rodgermd.vichuploader.namer_md5:
     class: Rodgermd\SfToolsBundle\Naming\MD5Namer
 
