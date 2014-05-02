@@ -42,7 +42,11 @@ class ImageType Extends FileType
     }
 
     /**
-     * @parent
+     * Builds view
+     *
+     * @param FormView      $view
+     * @param FormInterface $form
+     * @param array         $options
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -53,7 +57,9 @@ class ImageType Extends FileType
     }
 
     /**
-     * @parent
+     * Gets name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -61,7 +67,9 @@ class ImageType Extends FileType
     }
 
     /**
-     * @parent
+     * Gets parent form
+     *
+     * @return null|string|\Symfony\Component\Form\FormTypeInterface
      */
     public function getParent()
     {

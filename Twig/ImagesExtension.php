@@ -109,7 +109,6 @@ class ImagesExtension extends Twig_Extension
     }
 
     /**
-     * @parent
      * @return string
      */
     public function getName()
