@@ -9,6 +9,7 @@
 namespace Rodgermd\SfToolsBundle\Manager;
 
 
+use Doctrine\ORM\EntityManager;
 use Liip\ImagineBundle\Templating\Helper\ImagineHelper;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use \InvalidArgumentException;
@@ -25,6 +26,7 @@ class ImagesManager
     protected $uploader;
     /** @var \Liip\ImagineBundle\Templating\Helper\ImagineHelper */
     protected $imagine;
+    protected $em;
 
     /**
      * Object constructor
@@ -32,10 +34,12 @@ class ImagesManager
      * @param UploaderHelper $uploader
      * @param ImagineHelper  $imagine
      */
-    public function __construct(UploaderHelper $uploader, ImagineHelper $imagine)
+    public function __construct(UploaderHelper $uploader, ImagineHelper $imagine, EntityManager $em)
     {
         $this->uploader = $uploader;
         $this->imagine  = $imagine;
+        $this->em       = $em;
+
     }
 
     /**
@@ -72,7 +76,9 @@ class ImagesManager
         if ($object === null) {
             return false;
         }
+
         try {
+            $this->em->initializeObject($object);
             return $this->uploader->asset($object, $property);
         } catch (InvalidArgumentException $e) {
             return false;
