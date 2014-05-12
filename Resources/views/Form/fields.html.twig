@@ -23,3 +23,13 @@
   </div>
 {% endblock image_delete_widget %}
 
+{% block file_delete_widget %}
+  <div class="file-delete-widget">
+    <p>{{ form.parent.vars.data | is_uploaded(form.vars.name) }}</p>
+    {{ form_row(form.file) }}
+    {% if form.parent.vars.data | is_uploaded(form.vars.name) %}
+      {{ form_row(form.delete) }}
+    {% endif %}
+  </div>
+{% endblock file_delete_widget %}
+

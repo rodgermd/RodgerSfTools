@@ -71,7 +71,6 @@ class ImageDeleteType extends AbstractType
     {
         $view->children['file']->vars['object']          = $form->getParent()->getData();
         $view->children['file']->vars['object_property'] = $view->vars['name'];
-
     }
 
     /**
