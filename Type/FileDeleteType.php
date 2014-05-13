@@ -34,10 +34,9 @@ class FileDeleteType extends AbstractType
             ->add('delete', 'checkbox', array('required' => true))
             ->add(
                 'file',
-                'image',
+                'file',
                 array(
                     'required'   => @$options['required'],
-                    'filter'     => @$options['filter'],
                     'data_class' => 'Symfony\Component\HttpFoundation\File\File'
                 )
             );
