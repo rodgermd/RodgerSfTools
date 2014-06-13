@@ -10,7 +10,7 @@
 namespace Rodgermd\SfToolsBundle\Type;
 
 
-use Rodgermd\SfToolsBundle\DataTransformer\ImageDeleteDataTransformer;
+use Rodgermd\SfToolsBundle\DataTransformer\FileDeleteDataTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,7 +34,7 @@ class ImageDeleteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addViewTransformer(new ImageDeleteDataTransformer());
+        $builder->addViewTransformer(new FileDeleteDataTransformer());
         $builder
           ->add('delete', 'checkbox', array('required' => true))
           ->add(

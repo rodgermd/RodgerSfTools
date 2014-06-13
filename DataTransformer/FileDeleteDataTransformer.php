@@ -14,7 +14,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\File;
 
-class ImageDeleteDataTransformer implements DataTransformerInterface {
+class FileDeleteDataTransformer implements DataTransformerInterface {
 
   /**
    * Transforms a value from the original representation to a transformed representation.

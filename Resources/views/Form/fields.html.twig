@@ -5,10 +5,10 @@
     <div class="thumbnail-holder">
       {% if preview %}
       <a href="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(preview) }}" class="colorbox">
-      {% endif %}
+        {% endif %}
         <img class="thumbnail"
              src="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(form.vars.filter) }}" alt=""/>
-      {% if preview %}</a>{% endif %}
+        {% if preview %}</a>{% endif %}
     </div>
   {% endif %}
   {{ block('form_widget_simple') }}
@@ -33,3 +33,14 @@
   </div>
 {% endblock file_delete_widget %}
 
+{% block file_download_widget %}
+  <div class="file-download-widget well">
+    {% set uploaded_path = form.parent.vars.data | is_uploaded(form.vars.name) %}
+    {% if uploaded_path | length %}
+      <p><a href="{{ url_prefix ~ uploaded_path }}">{{ form.vars.data.filename | default('Download') }}</a></p>
+    {% else %}
+      <div class="not-uploaded"><span class="btn btn-warning">Not uploaded yet</span></div>
+    {% endif %}
+    {{ form_widget(form) }}
+  </div>
+{% endblock %}

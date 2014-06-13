@@ -14,6 +14,11 @@ services:
     tags:
       - { name: form.type, alias: file_delete }
 
+  rodgermd.type.file_download:
+    class: Rodgermd\SfToolsBundle\Type\FileDownloadType
+    tags:
+      - { name: form.type, alias: file_download }
+
   rodgermd.type.rich_text:
     class: Rodgermd\SfToolsBundle\Type\RichTextType
     tags:
