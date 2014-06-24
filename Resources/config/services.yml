@@ -33,12 +33,17 @@ services:
     arguments: [@vich_uploader.templating.helper.uploader_helper, @liip_imagine.templating.helper, @doctrine.orm.default_entity_manager]
 
   rodgermd.twig.youtube_extension:
-      class: Rodgermd\SfToolsBundle\Twig\YoutubeExtension
-      tags: [ { name: twig.extension } ]
+    class: Rodgermd\SfToolsBundle\Twig\YoutubeExtension
+    tags: [ { name: twig.extension } ]
 
   rodgermd.twig.countries_extension:
-        class: Rodgermd\SfToolsBundle\Twig\CountriesExtension
-        tags: [ { name: twig.extension } ]
+    class: Rodgermd\SfToolsBundle\Twig\CountriesExtension
+    tags: [ { name: twig.extension } ]
+
+  rodgermd.twig.string_extension:
+    class: Rodgermd\SfToolsBundle\Twig\StringExtension
+    tags: [ { name: twig.extension } ]
+
 
   rodgermd.vichuploader.namer_md5:
     class: Rodgermd\SfToolsBundle\Naming\MD5Namer
