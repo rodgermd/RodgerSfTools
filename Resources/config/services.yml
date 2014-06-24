@@ -44,7 +44,6 @@ services:
     class: Rodgermd\SfToolsBundle\Twig\StringExtension
     tags: [ { name: twig.extension } ]
 
-
   rodgermd.vichuploader.namer_md5:
     class: Rodgermd\SfToolsBundle\Naming\MD5Namer
 

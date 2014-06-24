@@ -26,7 +26,7 @@ class StringExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            new Twig_SimpleFilter('matches', array($this, 'matches')),
+            new Twig_SimpleFilter('preg_match', array($this, 'matches')),
         );
     }
 
@@ -50,6 +50,6 @@ class StringExtension extends Twig_Extension
      */
     public function getName()
     {
-        return 'string_extension';
+        return 'rodgermd.string_extension';
     }
 }
