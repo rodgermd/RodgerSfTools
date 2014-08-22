@@ -2,6 +2,8 @@
 
 namespace Rodgermd\SfToolsBundle\Naming;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\PropertyMapping;
 use Vich\UploaderBundle\Naming\NamerInterface;
 
 /**
@@ -14,14 +16,11 @@ class MD5Namer implements NamerInterface
     /**
      * {@inheritDoc}
      */
-    public function name($obj, $field)
+    public function name($object, PropertyMapping $mapping)
     {
-        $refObj = new \ReflectionObject($obj);
+        /** @var UploadedFile $file */
+        $file = $mapping->getFile($object);
 
-        $refProp = $refObj->getProperty($field);
-        $refProp->setAccessible(true);
-
-        $file = $refProp->getValue($obj);
         if (is_null($file)) {
             return false;
         }
