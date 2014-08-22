@@ -30,7 +30,7 @@ services:
 
   rodgermd.manager.images:
     class: Rodgermd\SfToolsBundle\Manager\ImagesManager
-    arguments: [@vich_uploader.templating.helper.uploader_helper, @liip_imagine.templating.helper, @doctrine.orm.default_entity_manager]
+    arguments: [@vich_uploader.templating.helper.uploader_helper, @vich_uploader.property_mapping_factory, @liip_imagine.templating.helper, @doctrine.orm.default_entity_manager]
 
   rodgermd.twig.youtube_extension:
     class: Rodgermd\SfToolsBundle\Twig\YoutubeExtension

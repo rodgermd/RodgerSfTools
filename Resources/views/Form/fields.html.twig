@@ -4,10 +4,9 @@
   {% if form.vars.object | is_uploaded(property) %}
     <div class="thumbnail-holder">
       {% if preview %}
-      <a href="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(preview) }}" class="colorbox">
+      <a href="{{ form.vars.object | uploaded_image_source(preview, property) }}" class="colorbox">
         {% endif %}
-        <img class="thumbnail"
-             src="{{ vich_uploader_asset(form.vars.object, property) | imagine_filter(form.vars.filter) }}" alt=""/>
+        <img class="thumbnail" src="{{ form.vars.object | uploaded_image_source(form.vars.filter, property) }}" alt=""/>
         {% if preview %}</a>{% endif %}
     </div>
   {% endif %}

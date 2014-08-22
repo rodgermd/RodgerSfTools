@@ -11,6 +11,7 @@ namespace Rodgermd\SfToolsBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use Liip\ImagineBundle\Templating\Helper\ImagineHelper;
+use Vich\UploaderBundle\Mapping\PropertyMappingFactory;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use \InvalidArgumentException;
 
@@ -22,23 +23,29 @@ use \InvalidArgumentException;
  */
 class ImagesManager
 {
-    /** @var \Vich\UploaderBundle\Templating\Helper\UploaderHelper */
+    /** @var UploaderHelper */
     protected $uploader;
-    /** @var \Liip\ImagineBundle\Templating\Helper\ImagineHelper */
+    /** @var PropertyMappingFactory */
+    protected $mappingFactory;
+    /** @var ImagineHelper */
     protected $imagine;
+    /** @var EntityManager */
     protected $em;
 
     /**
      * Object constructor
      *
-     * @param UploaderHelper $uploader
-     * @param ImagineHelper  $imagine
+     * @param UploaderHelper         $uploader
+     * @param PropertyMappingFactory $mappingFactory
+     * @param ImagineHelper          $imagine
+     * @param EntityManager          $em
      */
-    public function __construct(UploaderHelper $uploader, ImagineHelper $imagine, EntityManager $em)
+    public function __construct(UploaderHelper $uploader, PropertyMappingFactory $mappingFactory, ImagineHelper $imagine, EntityManager $em)
     {
-        $this->uploader = $uploader;
-        $this->imagine  = $imagine;
-        $this->em       = $em;
+        $this->uploader       = $uploader;
+        $this->mappingFactory = $mappingFactory;
+        $this->imagine        = $imagine;
+        $this->em             = $em;
 
     }
 
@@ -58,28 +65,35 @@ class ImagesManager
             return false;
         }
 
-        $original_filename = $this->uploader->asset($object, $property);
+        $mapping          = $this->mappingFactory->fromField($object, $property);
+        $originalFilename = $this->uploader->asset($object, $mapping->getMappingName());
 
-        return $this->imagine->filter($original_filename, $filter, $absolute);
+        return $this->imagine->filter($originalFilename, $filter, $absolute);
     }
 
     /**
      * Checks if file is uploaded
      *
-     * @param        $object
-     * @param string $property
+     * @param mixed  $object
+     * @param string $field
      *
      * @return bool|string
      */
-    public function is_uploaded($object, $property = 'file')
+    public function is_uploaded($object, $field)
     {
         if ($object === null) {
             return false;
         }
 
+        $mapping = $this->mappingFactory->fromField($object, $field);
+        if (!$mapping) {
+            return false;
+        }
+
         try {
             $this->em->initializeObject($object);
-            return $this->uploader->asset($object, $property);
+
+            return $this->uploader->asset($object, $mapping->getMappingName());
         } catch (InvalidArgumentException $e) {
             return false;
         }
