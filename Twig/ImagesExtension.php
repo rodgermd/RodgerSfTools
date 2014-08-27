@@ -63,13 +63,7 @@ class ImagesExtension extends Twig_Extension
             return false;
         }
 
-        $absolute = false;
-        if (array_key_exists('absolute', $attributes)) {
-            $absolute = (bool)$attributes['absolute'];
-            unset($attributes['absolute']);
-        }
-
-        return $this->image_tag($this->manager->getImageUrl($object, $filter, $property, $absolute), $attributes);
+        return $this->image_tag($this->manager->getImageUrl($object, $filter, $property), $attributes);
     }
 
     /**
@@ -78,13 +72,12 @@ class ImagesExtension extends Twig_Extension
      * @param mixed  $object
      * @param string $filter
      * @param string $property
-     * @param bool   $absolute
      *
      * @return bool|string
      */
-    public function uploaded_image_source($object, $filter, $property = 'file', $absolute = false)
+    public function uploaded_image_source($object, $filter, $property = 'file')
     {
-        return $this->manager->getImageUrl($object, $filter, $property, $absolute);
+        return $this->manager->getImageUrl($object, $filter, $property);
     }
 
     /**

@@ -55,11 +55,10 @@ class ImagesManager
      * @param mixed  $object
      * @param string $filter
      * @param string $property
-     * @param bool   $absolute
      *
      * @return bool
      */
-    public function getImageUrl($object, $filter, $property, $absolute = false)
+    public function getImageUrl($object, $filter, $property)
     {
         if (!$this->is_uploaded($object, $property)) {
             return false;
@@ -68,7 +67,7 @@ class ImagesManager
         $mapping          = $this->mappingFactory->fromField($object, $property);
         $originalFilename = $this->uploader->asset($object, $mapping->getMappingName());
 
-        return $this->imagine->filter($originalFilename, $filter, $absolute);
+        return $this->imagine->filter($originalFilename, $filter);
     }
 
     /**
