@@ -56,7 +56,7 @@ class ImagesManager
      * @param string $filter
      * @param string $property
      *
-     * @return bool
+     * @return string|bool
      */
     public function getImageUrl($object, $filter, $property)
     {
