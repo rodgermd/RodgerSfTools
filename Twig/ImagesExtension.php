@@ -29,7 +29,7 @@ class ImagesExtension extends Twig_Extension
     {
         return array(
             new Twig_SimpleFilter('uploaded_image', array($this, 'uploaded_image'), array('is_safe' => array('html'))),
-            new Twig_SimpleFilter('uploaded_image_source', array($this, 'uploaded_image_source'), array('is_safe' => array('html'))),
+            new Twig_SimpleFilter('uploaded_image_source', array($this, 'uploaded_image_source')),
             new Twig_SimpleFilter('is_uploaded', array($this, 'is_uploaded')),
         );
     }

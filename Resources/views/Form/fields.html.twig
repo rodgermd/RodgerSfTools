@@ -1,16 +1,20 @@
 {% block image_widget %}
   {% set property = form.vars.object_property | default(form.vars.name) %}
   {% set preview = form.vars.preview %}
-  {% if form.vars.object | is_uploaded(property) %}
-    <div class="thumbnail-holder">
-      {% if preview %}
-      <a href="{{ form.vars.object | uploaded_image_source(preview, property) }}" class="colorbox">
+  <div class="image-widget">
+    {% if form.vars.object | is_uploaded(property) %}
+      <div class="thumbnail-holder">
+        {% if preview %}
+          <a href="{{ form.vars.object | uploaded_image_source(preview, property) }}" class="colorbox">
+            <img class="thumbnail" src="{{ form.vars.object | uploaded_image_source(form.vars.filter, property) }}" alt=""/>
+          </a>
+        {% else %}
+          <img class="thumbnail" src="{{ form.vars.object | uploaded_image_source(form.vars.filter, property) }}" alt=""/>
         {% endif %}
-        <img class="thumbnail" src="{{ form.vars.object | uploaded_image_source(form.vars.filter, property) }}" alt=""/>
-        {% if preview %}</a>{% endif %}
-    </div>
-  {% endif %}
-  {{ block('form_widget_simple') }}
+      </div>
+    {% endif %}
+    {{ block('form_widget_simple') }}
+  </div>
 {% endblock image_widget %}
 
 {% block image_delete_widget %}
