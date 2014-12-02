@@ -36,16 +36,16 @@ class ImageDeleteType extends AbstractType
     {
         $builder->addViewTransformer(new FileDeleteDataTransformer());
         $builder
-          ->add('delete', 'checkbox', array('required' => true))
-          ->add(
-              'file',
-              'image',
-              array(
-                  'required'   => @$options['required'],
-                  'filter'     => @$options['filter'],
-                  'data_class' => 'Symfony\Component\HttpFoundation\File\File'
-              )
-          );
+            ->add('delete', 'checkbox', array('required' => true))
+            ->add(
+                'file',
+                'image',
+                array(
+                    'required'   => @$options['required'],
+                    'filter'     => @$options['filter'],
+                    'data_class' => 'Symfony\Component\HttpFoundation\File\File'
+                )
+            );
     }
 
     /**
@@ -57,7 +57,8 @@ class ImageDeleteType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['object'] = $view->parent->vars['data'];
+        $view->vars['object']       = $view->parent->vars['data'];
+        $view->vars['delete_label'] = $options['delete_label'];
     }
 
     /**
@@ -82,8 +83,9 @@ class ImageDeleteType extends AbstractType
     {
         $resolver->replaceDefaults(
             array(
-                'filter'   => 'admin_thumbnail',
-                'required' => false
+                'filter'       => 'admin_thumbnail',
+                'delete_label' => null,
+                'required'     => false
             )
         );
     }

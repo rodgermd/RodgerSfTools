@@ -21,7 +21,7 @@
   <div class="image-delete-widget">
     {{ form_row(form.file) }}
     {% if form.parent.vars.data | is_uploaded(form.vars.name) %}
-      {{ form_row(form.delete) }}
+      {{ form_row(form.delete, { label:  delete_label }) }}
     {% endif %}
   </div>
 {% endblock image_delete_widget %}
