@@ -41,7 +41,7 @@ class FileDownloadType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->replaceDefaults(
+        $resolver->setDefaults(
             array(
                 'data_class' => 'Symfony\Component\HttpFoundation\File\File',
                 'url_prefix' => null

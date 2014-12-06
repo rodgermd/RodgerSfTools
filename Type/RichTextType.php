@@ -16,19 +16,19 @@ use Symfony\Component\Form\FormView;
 
 class RichTextType extends TextareaType
 {
-  public function getParent()
-  {
-    return 'textarea';
-  }
+    public function getParent()
+    {
+        return 'textarea';
+    }
 
-  public function getName()
-  {
-    return 'rich_text';
-  }
+    public function getName()
+    {
+        return 'rich_text';
+    }
 
-  public function buildView(FormView $view, FormInterface $form, array $options)
-  {
-    parent::buildView($view, $form, $options);
-    $view->vars['attr']['class'] = trim((@$view->vars['attr']['class']) . ' rich-field');
-  }
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        parent::buildView($view, $form, $options);
+        $view->vars['attr']['class'] = trim((@$view->vars['attr']['class']) . ' rich-field');
+    }
 }

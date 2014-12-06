@@ -81,7 +81,7 @@ class ImageDeleteType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->replaceDefaults(
+        $resolver->setDefaults(
             array(
                 'filter'       => 'admin_thumbnail',
                 'delete_label' => null,

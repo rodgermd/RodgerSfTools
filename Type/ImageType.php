@@ -32,7 +32,7 @@ class ImageType Extends FileType
     {
         parent::setDefaultOptions($resolver);
 
-        $resolver->replaceDefaults(
+        $resolver->setDefaults(
             array(
                 'filter'          => 'admin_thumbnail',
                 'object_property' => null,

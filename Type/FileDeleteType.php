@@ -42,9 +42,7 @@ class FileDeleteType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->replaceDefaults(
-            array('required' => false)
-        );
+        $resolver->setDefaults(array('required' => false));
     }
 
     /**
