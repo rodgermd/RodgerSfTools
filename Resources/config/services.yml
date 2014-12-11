@@ -47,4 +47,6 @@ services:
   rodgermd.vichuploader.namer_md5:
     class: Rodgermd\SfToolsBundle\Naming\MD5Namer
 
+  rodgermd.vichuploader.directory_name:
+    class: Rodgermd\SfToolsBundle\Naming\DirectoryLevelsNamer
 

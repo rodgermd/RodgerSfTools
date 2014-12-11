@@ -64,8 +64,7 @@ class ImagesManager
             return false;
         }
 
-        $mapping          = $this->mappingFactory->fromField($object, $property);
-        $originalFilename = $this->uploader->asset($object, $mapping->getMappingName());
+        $originalFilename = $this->uploader->asset($object, $property);
 
         return $this->imagine->filter($originalFilename, $filter);
     }
@@ -84,15 +83,10 @@ class ImagesManager
             return false;
         }
 
-        $mapping = $this->mappingFactory->fromField($object, $field);
-        if (!$mapping) {
-            return false;
-        }
-
         try {
             $this->em->initializeObject($object);
 
-            return $this->uploader->asset($object, $mapping->getMappingName());
+            return $this->uploader->asset($object, $field);
         } catch (InvalidArgumentException $e) {
             return false;
         }
