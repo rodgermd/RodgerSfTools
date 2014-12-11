@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "vich/uploader-bundle": "@stable",
+    "vich/uploader-bundle": ">=v0.13.0@stable",
     "liip/imagine-bundle": "@stable"
   },
   "autoload":{
