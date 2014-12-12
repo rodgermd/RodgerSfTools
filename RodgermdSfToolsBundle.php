@@ -3,6 +3,7 @@
 
 namespace Rodgermd\SfToolsBundle;
 
+use Rodgermd\SfToolsBundle\DependencyInjection\Compiler\DirectoryNamerPass;
 use Rodgermd\SfToolsBundle\DependencyInjection\Compiler\TwigResourcePass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,5 +15,6 @@ class RodgermdSfToolsBundle extends Bundle
     parent::build($container);
 
     $container->addCompilerPass(new TwigResourcePass());
+    $container->addCompilerPass(new DirectoryNamerPass());
   }
 }

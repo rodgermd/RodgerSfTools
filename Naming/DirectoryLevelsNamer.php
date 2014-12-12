@@ -28,6 +28,37 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
     protected $length = 2;
 
     /**
+     * Sets nested directory name length
+     * ohgheiXa9a.jpg will be placed to ohg/hei/Xa9/ohgheiXa9a.jpg when length is 3
+     *
+     * @param int $length
+     *
+     * @return $this
+     */
+    public function setLength($length)
+    {
+        $this->length = (int)$length;
+
+        return $this;
+    }
+
+    /**
+     * Sets deep levels
+     * ohgheiXa9a.jpg will be placed to ohg/hei/ohgheiXa9a.jpg when levels is 2
+     *
+     * @param int $levels
+     *
+     * @return $this
+     */
+    public function setLevels($levels)
+    {
+        $this->levels = (int)$levels;
+
+        return $this;
+    }
+
+
+    /**
      * Creates a directory name for the file being uploaded.
      *
      * @param object          $object  The object the upload is attached to.
@@ -37,8 +68,19 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
      */
     public function directoryName($object, PropertyMapping $mapping)
     {
-        return 'aaa';
-        $parts = array_slice(str_split($mapping->getFileName($object), $this->length), 0, $this->levels);
+        return $this->getDirectoryNameFromFilename($mapping->getFileName($object));
+    }
+
+    /**
+     * Gets directory name from string filename
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    public function getDirectoryNameFromFilename($name)
+    {
+        $parts = array_slice(str_split($name, $this->length), 0, $this->levels);
 
         return implode(DIRECTORY_SEPARATOR, $parts);
     }

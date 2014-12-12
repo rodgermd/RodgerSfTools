@@ -15,7 +15,14 @@ class Configuration implements ConfigurationInterface
   public function getConfigTreeBuilder()
   {
     $treeBuilder = new TreeBuilder();
-    $rootNode    = $treeBuilder->root('rodgermd_sftools');
+    $rootNode    = $treeBuilder->root('rodgermd_sf_tools');
+
+    $rootNode->children()
+      ->arrayNode('directory_namer')->children()
+      ->scalarNode('levels')->defaultValue(2)->end()
+      ->scalarNode('length')->defaultValue(2)->end()
+      ->end()
+      ->end();
 
     return $treeBuilder;
   }
