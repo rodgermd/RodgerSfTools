@@ -61,7 +61,7 @@ class ImagesManager
     public function getImageUrl($object, $filter, $property)
     {
         if (!$this->is_uploaded($object, $property)) {
-            return false;
+            return null;
         }
 
         $originalFilename = $this->uploader->asset($object, $property);
