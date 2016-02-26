@@ -1,23 +1,24 @@
 {
-  "name":"rodgermd/sftools-bundle",
-  "description":"Usefull tools, widgets etc",
-  "homepage":"https://github.com/rodgermd/RodgerSfTools",
-  "type":"symfony-bundle",
-  "license":"MIT",
-  "authors":[
+  "name"        : "rodgermd/sftools-bundle",
+  "description" : "Usefull tools, widgets etc",
+  "homepage"    : "https://github.com/rodgermd/RodgerSfTools",
+  "type"        : "symfony-bundle",
+  "license"     : "MIT",
+  "authors"     : [
     {
-      "name":"Alexander Murashov",
-      "email":"rodger@ladela.com"
+      "name"  : "Alexander Murashov",
+      "email" : "rodger@ladela.com"
     }
   ],
-  "require": {
-    "vich/uploader-bundle": ">=0.13.0@stable",
-    "liip/imagine-bundle": "@stable"
+  "require"     : {
+    "symfony/symfony"      : ">=2.8.0@stable",
+    "vich/uploader-bundle" : ">=0.13.0@stable",
+    "liip/imagine-bundle"  : "@stable"
   },
-  "autoload":{
-    "psr-0":{
-      "Rodgermd\\SfToolsBundle":""
+  "autoload"    : {
+    "psr-0" : {
+      "Rodgermd\\SfToolsBundle" : ""
     }
   },
-  "target-dir":"Rodgermd/SfToolsBundle"
+  "target-dir"  : "Rodgermd/SfToolsBundle"
 }
