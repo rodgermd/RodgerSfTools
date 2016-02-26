@@ -9,93 +9,76 @@
 
 namespace Rodgermd\SfToolsBundle\Type;
 
-
 use Rodgermd\SfToolsBundle\DataTransformer\FileDeleteDataTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class ImageDeleteType
- * Image with delete option form type
- *
- * @package Rodgermd\SfToolsBundle\Type
+ * Image with delete option form type.
  */
 class ImageDeleteType extends AbstractType
 {
     /**
-     * Defines form
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addViewTransformer(new FileDeleteDataTransformer());
         $builder
-            ->add('delete', 'checkbox', array('required' => true))
+            ->add('delete', CheckboxType::class, array('required' => true))
             ->add(
                 'file',
-                'image',
+                ImageType::class,
                 array(
-                    'required'   => @$options['required'],
-                    'filter'     => @$options['filter'],
-                    'data_class' => 'Symfony\Component\HttpFoundation\File\File'
+                    'required' => @$options['required'],
+                    'filter' => @$options['filter'],
+                    'data_class' => File::class,
                 )
             );
     }
 
     /**
-     * Builds view
-     *
-     * @param FormView      $view
-     * @param FormInterface $form
-     * @param array         $options
+     * {@inheritdoc}
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['object']       = $view->parent->vars['data'];
+        $view->vars['object'] = $view->parent->vars['data'];
         $view->vars['delete_label'] = $options['delete_label'];
     }
 
     /**
-     * Finish view
-     *
-     * @param FormView      $view
-     * @param FormInterface $form
-     * @param array         $options
+     * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $view->children['file']->vars['object']          = $form->getParent()->getData();
+        $view->children['file']->vars['object'] = $form->getParent()->getData();
         $view->children['file']->vars['object_property'] = $view->vars['name'];
     }
 
     /**
-     * Sets default options
-     *
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
-                'filter'       => 'admin_thumbnail',
+                'filter' => 'admin_thumbnail',
                 'delete_label' => null,
-                'required'     => false
+                'required' => false,
             )
         );
     }
 
     /**
-     * Form name
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'image_delete';
     }

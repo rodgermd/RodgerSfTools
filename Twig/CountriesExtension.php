@@ -3,43 +3,36 @@
  * Created by PhpStorm.
  * User: rodger
  * Date: 11.12.13
- * Time: 10:48
+ * Time: 10:48.
  */
 
 namespace Rodgermd\SfToolsBundle\Twig;
 
 use Symfony\Component\Intl\Intl;
-use \Twig_Extension;
-use \Twig_SimpleFilter;
-use \Twig_SimpleFunction;
-use Symfony\Component\DependencyInjection\Container;
-use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
-use Liip\ImagineBundle\Templating\Helper\ImagineHelper;
-use \InvalidArgumentException;
+use Twig_Extension;
+use Twig_SimpleFilter;
 
 /**
- * Class CountriesExtension
- *
- * @package Rodgermd\SfToolsBundle\Twig
+ * Class CountriesExtension.
  */
 class CountriesExtension extends Twig_Extension
 {
     protected $countries;
 
     /**
-     * Gets filters
+     * Gets filters.
      *
      * @return array
      */
     public function getFilters()
     {
         return array(
-            new Twig_SimpleFilter('country', array($this, 'country'))
+            new Twig_SimpleFilter('country', array($this, 'country')),
         );
     }
 
     /**
-     * Gets country name by code
+     * Gets country name by code.
      *
      * @param string $code
      * @param string $culture
@@ -49,7 +42,7 @@ class CountriesExtension extends Twig_Extension
     public function country($code, $culture = null)
     {
         if (!$code) {
-            return null;
+            return;
         }
         if (!$this->countries) {
             $this->countries = Intl::getRegionBundle()->getCountryNames($culture);

@@ -7,14 +7,14 @@ use Vich\UploaderBundle\Mapping\PropertyMapping;
 use Vich\UploaderBundle\Naming\NamerInterface;
 
 /**
- * UniqidNamer
+ * UniqidNamer.
  *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
 class MD5Namer implements NamerInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function name($object, PropertyMapping $mapping)
     {

@@ -3,15 +3,15 @@
 namespace Rodgermd\SfToolsBundle\Twig;
 
 use Rodgermd\SfToolsBundle\Manager\ImagesManager;
-use \Twig_Extension;
-use \Twig_SimpleFilter;
+use Twig_Extension;
+use Twig_SimpleFilter;
 
 class ImagesExtension extends Twig_Extension
 {
     protected $manager;
 
     /**
-     * Object constructor
+     * Object constructor.
      *
      * @param \Rodgermd\SfToolsBundle\Manager\ImagesManager $manager
      */
@@ -21,7 +21,7 @@ class ImagesExtension extends Twig_Extension
     }
 
     /**
-     * Defines filters
+     * Defines filters.
      *
      * @return array
      */
@@ -35,7 +35,7 @@ class ImagesExtension extends Twig_Extension
     }
 
     /**
-     * Checks if file is uploaded
+     * Checks if file is uploaded.
      *
      * @param        $object
      * @param string $property
@@ -48,7 +48,7 @@ class ImagesExtension extends Twig_Extension
     }
 
     /**
-     * Renders uploaded image
+     * Renders uploaded image.
      *
      * @param mixed  $object
      * @param string $filter
@@ -67,7 +67,7 @@ class ImagesExtension extends Twig_Extension
     }
 
     /**
-     * Gets uploaded image source uri
+     * Gets uploaded image source uri.
      *
      * @param mixed  $object
      * @param string $filter
@@ -81,7 +81,7 @@ class ImagesExtension extends Twig_Extension
     }
 
     /**
-     * Renders image tag
+     * Renders image tag.
      *
      * @param string $src
      * @param array  $params
@@ -91,14 +91,14 @@ class ImagesExtension extends Twig_Extension
     protected function image_tag($src, $params = array())
     {
         $default_params = array('alt' => '');
-        $params         = array_merge($default_params, $params);
-        $params['src']  = $src;
-        $result         = array();
+        $params = array_merge($default_params, $params);
+        $params['src'] = $src;
+        $result = array();
         foreach ($params as $key => $value) {
             $result[] = strtr('%key%="%value%"', array('%key%' => $key, '%value%' => $value));
         }
 
-        return strtr("<img %params%/>", array('%params%' => implode(" ", $result)));
+        return strtr('<img %params%/>', array('%params%' => implode(' ', $result)));
     }
 
     /**

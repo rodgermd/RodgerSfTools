@@ -9,71 +9,58 @@
 
 namespace Rodgermd\SfToolsBundle\Type;
 
-
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class ImageType
- * Defines Image form type
- *
- * @package Rodgermd\SfToolsBundle\Type
+ * Defines Image form type.
  */
-class ImageType Extends FileType
+class ImageType extends FileType
 {
     /**
-     * Sets default options
-     *
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(
             array(
-                'filter'          => 'admin_thumbnail',
+                'filter' => 'admin_thumbnail',
                 'object_property' => null,
-                'preview'         => null,
-                'required'        => false
+                'preview' => null,
+                'required' => false,
             )
         );
     }
 
     /**
-     * Builds view
-     *
-     * @param FormView      $view
-     * @param FormInterface $form
-     * @param array         $options
+     * {@inheritdoc}
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         parent::buildView($view, $form, $options);
-        $view->vars['filter']  = $options['filter'];
-        $view->vars['object']  = $form->getParent()->getData();
+        $view->vars['filter'] = $options['filter'];
+        $view->vars['object'] = $form->getParent()->getData();
         $view->vars['preview'] = $options['preview'];
     }
 
     /**
-     * Gets name
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'image';
     }
 
     /**
-     * Gets parent form
-     *
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * {@inheritdoc}
      */
     public function getParent()
     {
-        return 'file';
+        return FileType::class;
     }
 }

@@ -1,28 +1,4 @@
 services:
-  rodgermd.type.image_file:
-    class: Rodgermd\SfToolsBundle\Type\ImageType
-    tags:
-        - { name: form.type, alias: image }
-
-  rodgermd.type.image_delete_file:
-    class: Rodgermd\SfToolsBundle\Type\ImageDeleteType
-    tags:
-        - { name: form.type, alias: image_delete }
-
-  rodgermd.type.file_delete:
-    class: Rodgermd\SfToolsBundle\Type\FileDeleteType
-    tags:
-      - { name: form.type, alias: file_delete }
-
-  rodgermd.type.file_download:
-    class: Rodgermd\SfToolsBundle\Type\FileDownloadType
-    tags:
-      - { name: form.type, alias: file_download }
-
-  rodgermd.type.rich_text:
-    class: Rodgermd\SfToolsBundle\Type\RichTextType
-    tags:
-      - { name: form.type, alias: rich_text }
   rodgermd.twig.images_extension:
     class: Rodgermd\SfToolsBundle\Twig\ImagesExtension
     tags: [ { name: twig.extension } ]
@@ -30,7 +6,11 @@ services:
 
   rodgermd.manager.images:
     class: Rodgermd\SfToolsBundle\Manager\ImagesManager
-    arguments: [@vich_uploader.templating.helper.uploader_helper, @vich_uploader.property_mapping_factory, @liip_imagine.templating.helper, @doctrine.orm.default_entity_manager]
+    arguments:
+      - "@vich_uploader.templating.helper.uploader_helper"
+      - "@vich_uploader.property_mapping_factory"
+      - "@liip_imagine.templating.helper"
+      - "@doctrine.orm.default_entity_manager"
 
   rodgermd.twig.youtube_extension:
     class: Rodgermd\SfToolsBundle\Twig\YoutubeExtension

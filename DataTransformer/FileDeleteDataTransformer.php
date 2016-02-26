@@ -9,14 +9,13 @@
 
 namespace Rodgermd\SfToolsBundle\DataTransformer;
 
-
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\File;
 
-class FileDeleteDataTransformer implements DataTransformerInterface {
-
-  /**
+class FileDeleteDataTransformer implements DataTransformerInterface
+{
+    /**
    * Transforms a value from the original representation to a transformed representation.
    *
    * This method is called on two occasions inside a form field:
@@ -45,7 +44,7 @@ class FileDeleteDataTransformer implements DataTransformerInterface {
    */
   public function transform($value)
   {
-    return array('file' => $value, 'delete' => false);
+      return array('file' => $value, 'delete' => false);
   }
 
   /**
@@ -74,6 +73,6 @@ class FileDeleteDataTransformer implements DataTransformerInterface {
    */
   public function reverseTransform($value)
   {
-    return $value;
+      return $value;
   }
 }

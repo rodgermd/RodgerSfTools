@@ -3,24 +3,19 @@
  * Created by PhpStorm.
  * User: rodger
  * Date: 06.12.14
- * Time: 13:14
+ * Time: 13:14.
  */
 
 namespace Rodgermd\SfToolsBundle\Naming;
 
-
 use Vich\UploaderBundle\Mapping\PropertyMapping;
 use Vich\UploaderBundle\Naming\DirectoryNamerInterface;
-use Vich\UploaderBundle\Naming\NamerInterface;
 
 /**
- * Class DirectoryLevelsNamer
- *
- * @package Rodgermd\SfToolsBundle\Naming
+ * Class DirectoryLevelsNamer.
  */
 class DirectoryLevelsNamer implements DirectoryNamerInterface
 {
-
     /** @var int */
     protected $levels = 3;
 
@@ -29,7 +24,7 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
 
     /**
      * Sets nested directory name length
-     * ohgheiXa9a.jpg will be placed to ohg/hei/Xa9/ohgheiXa9a.jpg when length is 3
+     * ohgheiXa9a.jpg will be placed to ohg/hei/Xa9/ohgheiXa9a.jpg when length is 3.
      *
      * @param int $length
      *
@@ -37,14 +32,14 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
      */
     public function setLength($length)
     {
-        $this->length = (int)$length;
+        $this->length = (int) $length;
 
         return $this;
     }
 
     /**
      * Sets deep levels
-     * ohgheiXa9a.jpg will be placed to ohg/hei/ohgheiXa9a.jpg when levels is 2
+     * ohgheiXa9a.jpg will be placed to ohg/hei/ohgheiXa9a.jpg when levels is 2.
      *
      * @param int $levels
      *
@@ -52,11 +47,10 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
      */
     public function setLevels($levels)
     {
-        $this->levels = (int)$levels;
+        $this->levels = (int) $levels;
 
         return $this;
     }
-
 
     /**
      * Creates a directory name for the file being uploaded.
@@ -72,7 +66,7 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
     }
 
     /**
-     * Gets directory name from string filename
+     * Gets directory name from string filename.
      *
      * @param string $name
      *

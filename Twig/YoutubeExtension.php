@@ -9,12 +9,12 @@
 
 namespace Rodgermd\SfToolsBundle\Twig;
 
-use \Twig_Extension;
-use \Twig_SimpleFilter;
+use Twig_Extension;
+use Twig_SimpleFilter;
 
 class YoutubeExtension extends Twig_Extension
 {
-    const VIDEO_URL   = 'http://www.youtube.com/embed/%code%';
+    const VIDEO_URL = 'http://www.youtube.com/embed/%code%';
     const IFRAME_CODE = '<iframe frameborder="0" scrolling="no" src="%url%"></iframe>';
 
     public function getFilters()
@@ -27,7 +27,7 @@ class YoutubeExtension extends Twig_Extension
     }
 
     /**
-     * Renders youtube video preview image
+     * Renders youtube video preview image.
      *
      * @param     $url
      * @param int $thumbnail
@@ -38,11 +38,11 @@ class YoutubeExtension extends Twig_Extension
     {
         $code = $this->youtube_id($url);
 
-        return $code ? 'http://img.youtube.com/vi/' . $code . '/' . $thumbnail . '.jpg' : false;
+        return $code ? 'http://img.youtube.com/vi/'.$code.'/'.$thumbnail.'.jpg' : false;
     }
 
     /**
-     * Renders youtube embeded video
+     * Renders youtube embeded video.
      *
      * @param $url
      *
@@ -59,7 +59,7 @@ class YoutubeExtension extends Twig_Extension
     }
 
     /**
-     * Gets embed url
+     * Gets embed url.
      *
      * @param $url
      *
@@ -73,7 +73,7 @@ class YoutubeExtension extends Twig_Extension
     }
 
     /**
-     * Parses youtube identificator from url
+     * Parses youtube identificator from url.
      *
      * @param $url
      *
@@ -83,7 +83,7 @@ class YoutubeExtension extends Twig_Extension
     {
         preg_match("/\/watch\?v=(?P<code>[\w\d\-]+)/", $url, $matches);
 
-        return @$matches['code'] ? : false;
+        return @$matches['code'] ?: false;
     }
 
     /**

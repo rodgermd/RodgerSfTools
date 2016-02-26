@@ -3,31 +3,25 @@
  * Created by PhpStorm.
  * User: rodger
  * Date: 13.06.14
- * Time: 12:44
+ * Time: 12:44.
  */
 
 namespace Rodgermd\SfToolsBundle\Type;
 
-
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class FileDownloadType
- *
- * @package Rodgermd\SfToolsBundle\Type
+ * Class FileDownloadType.
  */
 class FileDownloadType extends AbstractType
 {
     /**
-     * Prepares view
-     *
-     * @param FormView      $view
-     * @param FormInterface $form
-     * @param array         $options
+     * {@inheritdoc}
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -35,37 +29,31 @@ class FileDownloadType extends AbstractType
     }
 
     /**
-     * Sets default options
-     *
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'Symfony\Component\HttpFoundation\File\File',
-                'url_prefix' => null
+                'data_class' => File::class,
+                'url_prefix' => null,
             )
         );
     }
 
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'file_download';
     }
 
     /**
-     * Form parent
-     *
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * {@inheritdoc}
      */
     public function getParent()
     {
-        return 'file';
+        return FileType::class;
     }
 }

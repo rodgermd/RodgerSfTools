@@ -3,22 +3,19 @@
  * Created by PhpStorm.
  * User: rodger
  * Date: 12.12.14
- * Time: 16:14
+ * Time: 16:14.
  */
 
 namespace Rodgermd\SfToolsBundle\DependencyInjection\Compiler;
-
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Class DirectoryNamerPass
- *
- * @package Rodgermd\SfToolsBundle\DependencyInjection\Compiler
+ * Class DirectoryNamerPass.
  */
-class DirectoryNamerPass implements CompilerPassInterface {
-
+class DirectoryNamerPass implements CompilerPassInterface
+{
     /**
      * You can modify the container here before it is dumped to PHP code.
      *

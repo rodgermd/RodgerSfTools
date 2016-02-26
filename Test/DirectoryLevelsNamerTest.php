@@ -6,12 +6,12 @@ use Rodgermd\SfToolsBundle\Naming\DirectoryLevelsNamer;
 use Vich\UploaderBundle\Mapping\PropertyMapping;
 
 /**
- * Class DirectoryLevelsNamerTest
+ * Class DirectoryLevelsNamerTest.
  */
 class DirectoryLevelsNamerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test levels
+     * Test levels.
      */
     public function testLevels()
     {
@@ -24,15 +24,15 @@ class DirectoryLevelsNamerTest extends \PHPUnit_Framework_TestCase
         $mapping->shouldReceive('getFileName')->andReturn($name);
         $result = $namer->directoryName(new \StdClass(), $mapping);
 
-        $this->assertEquals($result, substr($name, 0, 3) . DIRECTORY_SEPARATOR . substr($name, 3, 3));
+        $this->assertEquals($result, substr($name, 0, 3).DIRECTORY_SEPARATOR.substr($name, 3, 3));
 
         $namer->setLevels(3);
         $result = $namer->directoryName(new \StdClass(), $mapping);
-        $this->assertEquals($result, substr($name, 0, 3) . DIRECTORY_SEPARATOR . substr($name, 3, 3). DIRECTORY_SEPARATOR . substr($name, 6, 3));
+        $this->assertEquals($result, substr($name, 0, 3).DIRECTORY_SEPARATOR.substr($name, 3, 3).DIRECTORY_SEPARATOR.substr($name, 6, 3));
     }
 
     /**
-     * Test length
+     * Test length.
      */
     public function testLength()
     {
@@ -45,15 +45,15 @@ class DirectoryLevelsNamerTest extends \PHPUnit_Framework_TestCase
         $mapping->shouldReceive('getFileName')->andReturn($name);
         $result = $namer->directoryName(new \StdClass(), $mapping);
 
-        $this->assertEquals($result, substr($name, 0, 2) . DIRECTORY_SEPARATOR . substr($name, 2, 2));
+        $this->assertEquals($result, substr($name, 0, 2).DIRECTORY_SEPARATOR.substr($name, 2, 2));
 
         $namer->setLength(3);
         $result = $namer->directoryName(new \StdClass(), $mapping);
-        $this->assertEquals($result, substr($name, 0, 3) . DIRECTORY_SEPARATOR . substr($name, 3, 3));
+        $this->assertEquals($result, substr($name, 0, 3).DIRECTORY_SEPARATOR.substr($name, 3, 3));
     }
 
     /**
-     * Tests short string
+     * Tests short string.
      */
     public function testShortString()
     {
@@ -66,7 +66,7 @@ class DirectoryLevelsNamerTest extends \PHPUnit_Framework_TestCase
         $mapping->shouldReceive('getFileName')->andReturn($name);
 
         $result = $namer->directoryName(new \StdClass(), $mapping);
-        $this->assertEquals($result, 'ab' . DIRECTORY_SEPARATOR . 'c');
+        $this->assertEquals($result, 'ab'.DIRECTORY_SEPARATOR.'c');
 
         $namer->setLength(3);
         $result = $namer->directoryName(new \StdClass(), $mapping);
@@ -74,12 +74,11 @@ class DirectoryLevelsNamerTest extends \PHPUnit_Framework_TestCase
 
         $namer->setLength(2)->setLevels(4);
         $result = $namer->directoryName(new \StdClass(), $mapping);
-        $this->assertEquals($result, 'ab' . DIRECTORY_SEPARATOR . 'c');
+        $this->assertEquals($result, 'ab'.DIRECTORY_SEPARATOR.'c');
     }
 
-
     /**
-     * Gets PropertyMapping mock
+     * Gets PropertyMapping mock.
      *
      * @return \Mockery\MockInterface
      */

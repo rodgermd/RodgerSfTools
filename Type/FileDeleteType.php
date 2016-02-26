@@ -3,55 +3,47 @@
  * Created by PhpStorm.
  * User: rodger
  * Date: 12.05.14
- * Time: 17:10
+ * Time: 17:10.
  */
 
 namespace Rodgermd\SfToolsBundle\Type;
 
-
 use Rodgermd\SfToolsBundle\DataTransformer\FileDeleteDataTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class FileDeleteType
- *
- * @package Rodgermd\SfToolsBundle\Type
+ * Class FileDeleteType.
  */
 class FileDeleteType extends AbstractType
 {
     /**
-     * Defines form
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addViewTransformer(new FileDeleteDataTransformer());
         $builder
-            ->add('delete', 'checkbox', array('required' => true))
-            ->add('file', 'file', array('required' => @$options['required'], 'data_class' => 'Symfony\Component\HttpFoundation\File\File'));
+            ->add('delete', CheckboxType::class, array('required' => true))
+            ->add('file', FileType::class, array('required' => @$options['required'], 'data_class' => 'Symfony\Component\HttpFoundation\File\File'));
     }
 
     /**
-     * Sets default options
-     *
-     * @param OptionsResolverInterface $resolver
+     * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array('required' => false));
     }
 
     /**
-     * Form name
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'file_delete';
     }
-} 
+}

@@ -3,23 +3,21 @@
  * Created by PhpStorm.
  * User: rodger
  * Date: 24.06.14
- * Time: 16:23
+ * Time: 16:23.
  */
 
 namespace Rodgermd\SfToolsBundle\Twig;
 
-use \Twig_Extension;
-use \Twig_SimpleFilter;
+use Twig_Extension;
+use Twig_SimpleFilter;
 
 /**
- * Class StringExtension
- *
- * @package Rodgermd\SfToolsBundle\Twig
+ * Class StringExtension.
  */
 class StringExtension extends Twig_Extension
 {
     /**
-     * Defines filters
+     * Defines filters.
      *
      * @return array
      */
@@ -31,7 +29,7 @@ class StringExtension extends Twig_Extension
     }
 
     /**
-     * Checks if value matches regexp pattern
+     * Checks if value matches regexp pattern.
      *
      * @param $value
      * @param $pattern

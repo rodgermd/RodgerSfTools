@@ -3,23 +3,20 @@
  * Created by PhpStorm.
  * User: rodger
  * Date: 13.02.14
- * Time: 15:40
+ * Time: 15:40.
  */
 
 namespace Rodgermd\SfToolsBundle\Manager;
-
 
 use Doctrine\ORM\EntityManager;
 use Liip\ImagineBundle\Templating\Helper\ImagineHelper;
 use Vich\UploaderBundle\Mapping\PropertyMappingFactory;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Class ImagesManager
- * Manages uploaded images
- *
- * @package Rodgermd\SfToolsBundle\Manager
+ * Manages uploaded images.
  */
 class ImagesManager
 {
@@ -33,7 +30,7 @@ class ImagesManager
     protected $em;
 
     /**
-     * Object constructor
+     * Object constructor.
      *
      * @param UploaderHelper         $uploader
      * @param PropertyMappingFactory $mappingFactory
@@ -42,15 +39,14 @@ class ImagesManager
      */
     public function __construct(UploaderHelper $uploader, PropertyMappingFactory $mappingFactory, ImagineHelper $imagine, EntityManager $em)
     {
-        $this->uploader       = $uploader;
+        $this->uploader = $uploader;
         $this->mappingFactory = $mappingFactory;
-        $this->imagine        = $imagine;
-        $this->em             = $em;
-
+        $this->imagine = $imagine;
+        $this->em = $em;
     }
 
     /**
-     * Gets image url
+     * Gets image url.
      *
      * @param mixed  $object
      * @param string $filter
@@ -61,7 +57,7 @@ class ImagesManager
     public function getImageUrl($object, $filter, $property)
     {
         if (!$this->is_uploaded($object, $property)) {
-            return null;
+            return;
         }
 
         $originalFilename = $this->uploader->asset($object, $property);
@@ -70,7 +66,7 @@ class ImagesManager
     }
 
     /**
-     * Checks if file is uploaded
+     * Checks if file is uploaded.
      *
      * @param mixed  $object
      * @param string $field
@@ -91,4 +87,4 @@ class ImagesManager
             return false;
         }
     }
-} 
+}

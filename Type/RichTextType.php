@@ -9,26 +9,37 @@
 
 namespace Rodgermd\SfToolsBundle\Type;
 
-
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
+/**
+ * Class RichTextType.
+ */
 class RichTextType extends TextareaType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
-        return 'textarea';
+        return TextareaType::class;
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'rich_text';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         parent::buildView($view, $form, $options);
-        $view->vars['attr']['class'] = trim((@$view->vars['attr']['class']) . ' rich-field');
+        $view->vars['attr']['class'] = trim((@$view->vars['attr']['class']).' rich-field');
     }
 }
