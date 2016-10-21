@@ -2,7 +2,7 @@ services:
   rodgermd.twig.images_extension:
     class: Rodgermd\SfToolsBundle\Twig\ImagesExtension
     tags: [ { name: twig.extension } ]
-    arguments: [@rodgermd.manager.images]
+    arguments: ['@rodgermd.manager.images']
 
   rodgermd.manager.images:
     class: Rodgermd\SfToolsBundle\Manager\ImagesManager
