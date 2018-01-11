@@ -16,7 +16,7 @@ class MD5Namer implements NamerInterface
     /**
      * {@inheritdoc}
      */
-    public function name($object, PropertyMapping $mapping)
+    public function name($object, PropertyMapping $mapping): string
     {
         /** @var UploadedFile $file */
         $file = $mapping->getFile($object);

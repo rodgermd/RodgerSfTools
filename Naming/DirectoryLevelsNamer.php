@@ -30,7 +30,7 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
      *
      * @return $this
      */
-    public function setLength($length)
+    public function setLength($length): self
     {
         $this->length = (int) $length;
 
@@ -45,7 +45,7 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
      *
      * @return $this
      */
-    public function setLevels($levels)
+    public function setLevels($levels): self
     {
         $this->levels = (int) $levels;
 
@@ -60,7 +60,7 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
      *
      * @return string The directory name.
      */
-    public function directoryName($object, PropertyMapping $mapping)
+    public function directoryName($object, PropertyMapping $mapping): string
     {
         return $this->getDirectoryNameFromFilename($mapping->getFileName($object));
     }
@@ -72,7 +72,7 @@ class DirectoryLevelsNamer implements DirectoryNamerInterface
      *
      * @return string
      */
-    public function getDirectoryNameFromFilename($name)
+    public function getDirectoryNameFromFilename($name): string
     {
         $parts = array_slice(str_split($name, $this->length), 0, $this->levels);
 
